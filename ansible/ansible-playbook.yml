@@ -1,0 +1,13 @@
+- hosts: ansible
+  become: yes
+
+  tasks:
+  - name: create docker image
+    command: docker build -t registerapp:latest .
+
+  - name: create tag to push image onto dockerhub
+    command: docker tag registerapp:latest 02271589/registerapp:latest
+
+  - name: push docker image to repo
+    command: docker push 02271589/registerapp:latest
+
